@@ -56,8 +56,8 @@ class _ShuppyHomeScreenState extends State<ShuppyHomeScreen> {
         Scaffold(
         floatingActionButton: FloatingActionButton(
         onPressed: () =>
-            Get.to<dynamic>(() => const ShuppyNotificationScreen()),
-        child: Icon(Icons.add),
+            Get.to<dynamic>(() => const ShuppyProfileScreen()),
+          child: Icon(Icons.add),
           foregroundColor: Colors.black,
       ),
     ),

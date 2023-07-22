@@ -21,7 +21,10 @@ import 'package:ultimate_bundle/premium/shuppy/src/widgets/custom_price_text.dar
 import 'package:ultimate_bundle/premium/shuppy/src/widgets/custom_star_rating.dart';
 
 
-import '../notification/notification_page.dart';
+
+
+
+import '../profile/profile_page.dart';
 
 part 'screens/home_screen.dart';
 part 'widgets/build_carousel_swiper.dart';
