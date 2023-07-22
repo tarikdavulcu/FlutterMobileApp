@@ -30,7 +30,7 @@ class _ShuppyLanguageScreenState extends State<ShuppyLanguageScreen> {
       String language(String val) {
         switch (val) {
           case 'id':
-            return 'Indonesian';
+            return 'Türkçe';
           default:
             return 'English';
         }

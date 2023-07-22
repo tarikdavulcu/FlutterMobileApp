@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
       child: Consumer2<LocaleProvider, ThemeProvider>(
         builder: (context, localeProv, themeProv, snapshot) {
           return GetMaterialApp(
-            title: 'Flutima',
+            title: 'Hobby',
             debugShowCheckedModeBanner: false,
             theme: themeLight(context),
             darkTheme: themeDark(context),
