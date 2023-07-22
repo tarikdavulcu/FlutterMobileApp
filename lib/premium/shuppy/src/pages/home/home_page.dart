@@ -20,6 +20,9 @@ import 'package:ultimate_bundle/premium/shuppy/src/widgets/custom_network_image.
 import 'package:ultimate_bundle/premium/shuppy/src/widgets/custom_price_text.dart';
 import 'package:ultimate_bundle/premium/shuppy/src/widgets/custom_star_rating.dart';
 
+import '../../../../../flutima/pages/setting/setting_page.dart';
+import '../notification/notification_page.dart';
+
 part 'screens/home_screen.dart';
 part 'widgets/build_carousel_swiper.dart';
 part 'widgets/build_custom_app_bar.dart';

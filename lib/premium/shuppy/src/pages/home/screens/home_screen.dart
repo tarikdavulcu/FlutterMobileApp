@@ -26,33 +26,41 @@ class _ShuppyHomeScreenState extends State<ShuppyHomeScreen> {
         extendBodyBehindAppBar: true,
         body: Stack(
           children: [
-            ListView(
-              children: [
-                _BuildCarouselSwiper(
-                  itemCount: LocalList.carouselSwiperList(),
-                  carouselIndex: _carouselIndex,
-                  onIndexChanged: (val) {
-                    setState(() => _carouselIndex = val);
-                  },
-                ),
-                 const SizedBox(height: Const.space25),
-                _CategorySection(
-                  itemCount: LocalList.topCategoryList(),
-                ),
-                 const SizedBox(height: Const.space15),
-                _ScrollableSection(
-                  label: AppLocalizations.of(context)!.new_arrival,
-                  itemCount: LocalList.allProductList(),
-                  onViewAllTap: () => Get.toNamed<dynamic>(
-                    ShuppyRoutes.browseProduct,
-                    arguments: BrowseProductArgument(
-                      label: AppLocalizations.of(context)!.new_arrival,
-                      itemCount: LocalList.allProductList(),
-                    ),
-                  ),
-                ),
-              ],
-            ),
+            // ListView(
+            //   children: [
+            //     _BuildCarouselSwiper(
+            //       itemCount: LocalList.carouselSwiperList(),
+            //       carouselIndex: _carouselIndex,
+            //       onIndexChanged: (val) {
+            //         setState(() => _carouselIndex = val);
+            //       },
+            //     ),
+            //      const SizedBox(height: Const.space25),
+            //     _CategorySection(
+            //       itemCount: LocalList.topCategoryList(),
+            //     ),
+            //      const SizedBox(height: Const.space15),
+            //     _ScrollableSection(
+            //       label: AppLocalizations.of(context)!.new_arrival,
+            //       itemCount: LocalList.allProductList(),
+            //       onViewAllTap: () => Get.toNamed<dynamic>(
+            //         ShuppyRoutes.browseProduct,
+            //         arguments: BrowseProductArgument(
+            //           label: AppLocalizations.of(context)!.new_arrival,
+            //           itemCount: LocalList.allProductList(),
+            //         ),
+            //       ),
+            //     ),
+            //   ],
+            // ),
+        Scaffold(
+        floatingActionButton: FloatingActionButton(
+        onPressed: () =>
+            Get.to<dynamic>(() => const ShuppyNotificationScreen()),
+        child: Icon(Icons.add),
+          foregroundColor: Colors.black,
+      ),
+    ),
             _CustomAppBar(
               onSearchTap: () {
                 showSearch<dynamic>(context: context, delegate: ShuppySearchScreen());
