@@ -6,12 +6,17 @@ import 'package:provider/provider.dart';
 import 'package:ultimate_bundle/flutima/helpers/routes.dart';
 import 'package:ultimate_bundle/flutima/helpers/themes.dart';
 import 'package:ultimate_bundle/l10n/l10n.dart';
-import 'package:ultimate_bundle/premium/shuppy/src/pages/on_boarding/on_boarding_page.dart';
+import 'package:ultimate_bundle/premium/barbera/src/pages/on_boarding/on_boarding_page.dart';
 import 'package:ultimate_bundle/providers/locale_provider.dart';
 import 'package:ultimate_bundle/providers/theme_provider.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
-void main() {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
@@ -29,7 +34,7 @@ class MyApp extends StatelessWidget {
       child: Consumer2<LocaleProvider, ThemeProvider>(
         builder: (context, localeProv, themeProv, snapshot) {
           return GetMaterialApp(
-            title: 'Hobby',
+            title: 'Blood',
             debugShowCheckedModeBanner: false,
             theme: themeLight(context),
             darkTheme: themeDark(context),
@@ -45,7 +50,7 @@ class MyApp extends StatelessWidget {
               GlobalWidgetsLocalizations.delegate,
               GlobalCupertinoLocalizations.delegate,
             ],
-            home: const ShuppyOnBoardingScreen(),
+            home: const BarberaOnBoardingScreen(),
           );
         },
       ),

@@ -13,9 +13,9 @@ class SettingsScreen extends StatelessWidget {
       body: ListView(
         children: const [
           _BuildGeneral(),
-          SizedBox(height: 25),
+          SizedBox(height: Const.space25),
           _BuildLanguage(),
-          SizedBox(height: 25),
+          SizedBox(height: Const.space25),
         ],
       ),
     );

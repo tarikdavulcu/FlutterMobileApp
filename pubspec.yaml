@@ -1,7 +1,7 @@
 # name: flutima_remake
 name: ultimate_bundle
 
-description: Hobby.
+description: A new Flutter project.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 2.10.22+22
 
@@ -21,6 +21,8 @@ dependencies:
   cupertino_icons: ^1.0.5
   dot_navigation_bar: ^1.0.1+4
   dots_indicator: ^2.1.0
+  firebase_auth: ^4.7.2
+  firebase_core: ^2.15.0
   flutter:
     sdk: flutter
   flutter_feather_icons: ^2.0.0+1
@@ -41,6 +43,7 @@ dependencies:
   get: ^4.6.5
   google_fonts: ^4.0.3
   google_maps_flutter: ^2.2.4
+  google_sign_in: ^6.1.4
   icon_badge: ^1.0.0
   image_picker: ^0.8.6+4
   intl: ^0.18.0

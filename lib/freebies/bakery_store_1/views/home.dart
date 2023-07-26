@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart'; 
+import 'package:flutter/material.dart';
 import 'package:ultimate_bundle/freebies/bakery_store_1/helpers/constants.dart';
 import 'package:ultimate_bundle/freebies/bakery_store_1/models/bakery.dart';
 import 'package:ultimate_bundle/freebies/bakery_store_1/models/cake.dart';
@@ -24,7 +24,7 @@ class HomeScreen extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 18),
               alignment: Alignment.centerLeft,
               child: const Row(
-                children:  <Widget>[
+                children: <Widget>[
                   Icon(
                     Icons.location_on,
                     color: Colors.grey,
@@ -44,7 +44,7 @@ class HomeScreen extends StatelessWidget {
         child: Column(
           children: <Widget>[
             const SizedBox(height: 25),
-            const CustomListTile(  title: 'Today best deals'),
+            const CustomListTile(title: 'Today best deals'),
             const SizedBox(height: 15),
             SizedBox(
               width: double.infinity,
@@ -63,7 +63,7 @@ class HomeScreen extends StatelessWidget {
                 },
               ),
             ),
-            const CustomListTile(title:'Discover by category'),
+            const CustomListTile(title: 'Discover by category'),
             const SizedBox(height: 15),
             SizedBox(
               width: double.infinity,
@@ -80,7 +80,7 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 25),
-            const CustomListTile(title:'Popular bakery'),
+            const CustomListTile(title: 'Popular bakery'),
             const SizedBox(height: 15),
             ListView.builder(
               itemCount: bakeryList.length,

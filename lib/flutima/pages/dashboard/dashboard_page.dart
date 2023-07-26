@@ -15,11 +15,10 @@ import 'package:ultimate_bundle/flutima/list_item/free_list.dart';
 import 'package:ultimate_bundle/flutima/list_item/popular_list.dart';
 import 'package:ultimate_bundle/flutima/list_item/premium_list.dart';
 import 'package:ultimate_bundle/flutima/pages/setting/setting_page.dart';
+import 'package:ultimate_bundle/premium/barbera/src/helpers/toast.dart';
+import 'package:ultimate_bundle/premium/barbera/src/widgets/custom_elevated_button.dart';
 import 'package:ultimate_bundle/providers/theme_provider.dart';
 import 'package:url_launcher/url_launcher.dart';
-
-import '../../../freebies/ecommerce_1/helpers/snack_toast.dart';
-import '../../../freebies/furniture_1/widgets/custom_elevated_button.dart';
 
 part 'screens/dashboard_screen.dart';
 part 'widgets/sliver_app_bar_delegate.dart';

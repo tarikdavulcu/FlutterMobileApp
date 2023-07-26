@@ -13,22 +13,46 @@ import 'package:ultimate_bundle/freebies/job_finder_1/job_finder_1_page.dart';
 import 'package:ultimate_bundle/freebies/logitech_store/main.dart';
 import 'package:ultimate_bundle/freebies/movie/movie_page.dart';
 import 'package:ultimate_bundle/freebies/sneakers/sneaker_page.dart';
-import 'package:ultimate_bundle/premium/shuppy/main.dart';
-import 'package:ultimate_bundle/premium/shuppy/src/pages/address/address_page.dart';
-import 'package:ultimate_bundle/premium/shuppy/src/pages/bottom_navigation/bottom_navigation_page.dart';
-import 'package:ultimate_bundle/premium/shuppy/src/pages/category/category_page.dart';
-import 'package:ultimate_bundle/premium/shuppy/src/pages/checkout/checkout_page.dart';
-import 'package:ultimate_bundle/premium/shuppy/src/pages/favorite/favorite_page.dart';
-import 'package:ultimate_bundle/premium/shuppy/src/pages/forgot_password/forgot_password_page.dart';
-import 'package:ultimate_bundle/premium/shuppy/src/pages/language/language_page.dart';
-import 'package:ultimate_bundle/premium/shuppy/src/pages/notification/notification_page.dart';
-import 'package:ultimate_bundle/premium/shuppy/src/pages/on_boarding/on_boarding_page.dart';
-import 'package:ultimate_bundle/premium/shuppy/src/pages/order/order_page.dart';
-import 'package:ultimate_bundle/premium/shuppy/src/pages/payment/payment_page.dart';
-import 'package:ultimate_bundle/premium/shuppy/src/pages/product/product_page.dart';
-import 'package:ultimate_bundle/premium/shuppy/src/pages/profile/profile_page.dart';
-import 'package:ultimate_bundle/premium/shuppy/src/pages/sign_in/sign_in_page.dart';
-import 'package:ultimate_bundle/premium/shuppy/src/pages/sign_up/sign_up_page.dart';
+import 'package:ultimate_bundle/premium/barbera/barbera_index.dart';
+import 'package:ultimate_bundle/premium/barbera/src/pages/about/about_page.dart';
+import 'package:ultimate_bundle/premium/barbera/src/pages/add_credit_card/add_credit_card_page.dart';
+import 'package:ultimate_bundle/premium/barbera/src/pages/appointment/appointment_page.dart';
+import 'package:ultimate_bundle/premium/barbera/src/pages/appointment_detail/appointment_detail_page.dart';
+import 'package:ultimate_bundle/premium/barbera/src/pages/barber/barber_page.dart';
+import 'package:ultimate_bundle/premium/barbera/src/pages/barbershop/barbershop_page.dart';
+import 'package:ultimate_bundle/premium/barbera/src/pages/booking/booking_page.dart';
+import 'package:ultimate_bundle/premium/barbera/src/pages/booking_detail/booking_detail_page.dart';
+import 'package:ultimate_bundle/premium/barbera/src/pages/booking_payment/booking_payment_page.dart';
+import 'package:ultimate_bundle/premium/barbera/src/pages/booking_success/booking_success_page.dart';
+import 'package:ultimate_bundle/premium/barbera/src/pages/browse_barber/browse_barber_page.dart';
+import 'package:ultimate_bundle/premium/barbera/src/pages/browse_barbershop/browse_barbershop_page.dart';
+import 'package:ultimate_bundle/premium/barbera/src/pages/change_password/change_password_page.dart';
+import 'package:ultimate_bundle/premium/barbera/src/pages/chat/chat_page.dart';
+import 'package:ultimate_bundle/premium/barbera/src/pages/comment/comment_page.dart';
+import 'package:ultimate_bundle/premium/barbera/src/pages/create_new_password/create_new_password_page.dart';
+import 'package:ultimate_bundle/premium/barbera/src/pages/favorite/favorite_page.dart';
+import 'package:ultimate_bundle/premium/barbera/src/pages/filter/filter_page.dart';
+import 'package:ultimate_bundle/premium/barbera/src/pages/followers/followers_page.dart';
+import 'package:ultimate_bundle/premium/barbera/src/pages/following/following_page.dart';
+import 'package:ultimate_bundle/premium/barbera/src/pages/forgot_password/forgot_password_page.dart';
+import 'package:ultimate_bundle/premium/barbera/src/pages/forgot_password_success/forgot_password_success_page.dart';
+import 'package:ultimate_bundle/premium/barbera/src/pages/gallery/gallery_page.dart';
+import 'package:ultimate_bundle/premium/barbera/src/pages/language/language_page.dart';
+import 'package:ultimate_bundle/premium/barbera/src/pages/like/like_page.dart';
+import 'package:ultimate_bundle/premium/barbera/src/pages/notification/notification_page.dart';
+import 'package:ultimate_bundle/premium/barbera/src/pages/on_boarding/on_boarding_page.dart';
+import 'package:ultimate_bundle/premium/barbera/src/pages/otp_verification/otp_verification_page.dart';
+import 'package:ultimate_bundle/premium/barbera/src/pages/payment_method/payment_method_page.dart';
+import 'package:ultimate_bundle/premium/barbera/src/pages/paypal/paypal_page.dart';
+import 'package:ultimate_bundle/premium/barbera/src/pages/phone_verification/phone_verification_page.dart';
+import 'package:ultimate_bundle/premium/barbera/src/pages/profile_edit/profile_edit_page.dart';
+import 'package:ultimate_bundle/premium/barbera/src/pages/schedule/schedule_page.dart';
+import 'package:ultimate_bundle/premium/barbera/src/pages/search/search_page.dart';
+import 'package:ultimate_bundle/premium/barbera/src/pages/setting/setting_page.dart';
+import 'package:ultimate_bundle/premium/barbera/src/pages/sign_in/sign_in_page.dart';
+import 'package:ultimate_bundle/premium/barbera/src/pages/social_network_sign_in/social_network_sign_in_page.dart';
+import 'package:ultimate_bundle/premium/barbera/src/pages/support/support_page.dart';
+import 'package:ultimate_bundle/premium/barbera/src/widgets/custom_bottom_navigation_bar.dart';
 
 List<GetPage> allRoutesFlutima = [
   // Core
@@ -42,8 +66,8 @@ List<GetPage> allRoutesFlutima = [
   ),
   // UI Kit Routes
   GetPage<dynamic>(
-    name: UIKitRoutes.shuppy,
-    page: () => const ShuppySplashScreen(),
+    name: UIKitRoutes.barbera,
+    page: () => const BarberaSplashScreen(),
   ),
 
   // --------------------------------------------------------------------------
@@ -96,94 +120,184 @@ List<GetPage> allRoutesFlutima = [
   // --------------------------------------------------------------------------
   // Barbera Routes
 
-  // Shuppy Routes
   GetPage<dynamic>(
-    name: ShuppyRoutes.splash,
-    page: () => const ShuppySplashScreen(),
+    name: BarberaRoutes.splash,
+    page: () => const BarberaSplashScreen(),
   ),
   GetPage<dynamic>(
-    name: ShuppyRoutes.address,
-    page: () => const ShuppyAddressScreen(),
+    name: BarberaRoutes.onBoarding,
+    page: () => const BarberaOnBoardingScreen(),
   ),
   GetPage<dynamic>(
-    name: ShuppyRoutes.browseProduct,
-    page: () => const ShuppyBrowseProductScreen(),
+    name: BarberaRoutes.socialNetwork,
+    page: () => const BarberaSocialNetworkSignInScreen(),
   ),
   GetPage<dynamic>(
-    name: ShuppyRoutes.cart,
-    page: () => const ShuppyBottomNavigationScreen(initialIndex: 1),
+    name: BarberaRoutes.signIn,
+    page: () => const BarberaSignInScreen(),
   ),
   GetPage<dynamic>(
-    name: ShuppyRoutes.category,
-    page: () => const ShuppyCategoryScreen(),
+    name: BarberaRoutes.forgotPassword,
+    page: () => const BarberaForgotPasswordScreen(),
   ),
   GetPage<dynamic>(
-    name: ShuppyRoutes.checkout,
-    page: () => const ShuppyCheckoutScreen(),
+    name: BarberaRoutes.forgotPasswordSuccess,
+    page: () => const BarberaForgotPasswordSuccess(),
   ),
   GetPage<dynamic>(
-    name: ShuppyRoutes.checkoutSuccess,
-    page: () => const ShuppyCheckoutSuccessScreen(),
+    name: BarberaRoutes.createNewPassword,
+    page: () => const BarberaCreateNewPasswordScreen(),
   ),
   GetPage<dynamic>(
-    name: ShuppyRoutes.editProfile,
-    page: () => const ShuppyEditProfileScreen(),
+    name: BarberaRoutes.changePassword,
+    page: () => const BarberaChangePasswordScreen(),
   ),
   GetPage<dynamic>(
-    name: ShuppyRoutes.favorite,
-    page: () => const ShuppyFavoriteScreen(),
+    name: BarberaRoutes.signUp,
+    page: () => const BarberaSignInScreen(),
   ),
   GetPage<dynamic>(
-    name: ShuppyRoutes.forgotPassword,
-    page: () => const ShuppyForgotPasswordScreen(),
+    name: BarberaRoutes.phoneVerification,
+    page: () => const BarberaPhoneVerificationScreen(),
   ),
   GetPage<dynamic>(
-    name: ShuppyRoutes.home,
-    page: () => const ShuppyBottomNavigationScreen(),
+    name: BarberaRoutes.otpVerification,
+    page: () => const BarberaOTPVerificationScreen(),
   ),
   GetPage<dynamic>(
-    name: ShuppyRoutes.language,
-    page: () => const ShuppyLanguageScreen(),
+    name: BarberaRoutes.home,
+    page: () => const BarberaCustomBottomNavigationBar(),
   ),
   GetPage<dynamic>(
-    name: ShuppyRoutes.notification,
-    page: () => const ShuppyNotificationScreen(),
+    name: BarberaRoutes.nearby,
+    page: () => const BarberaCustomBottomNavigationBar(selectedIndex: 1),
   ),
   GetPage<dynamic>(
-    name: ShuppyRoutes.onBoarding,
-    page: () => const ShuppyOnBoardingScreen(),
+    name: BarberaRoutes.inbox,
+    page: () => const BarberaCustomBottomNavigationBar(selectedIndex: 2),
   ),
   GetPage<dynamic>(
-    name: ShuppyRoutes.orderHistory,
-    page: () => const ShuppyOrderHistoryScreen(),
+    name: BarberaRoutes.appointment,
+    page: () => const BarberaCustomBottomNavigationBar(selectedIndex: 3),
   ),
   GetPage<dynamic>(
-    name: ShuppyRoutes.orderDetail,
-    page: () => const ShuppyOrderDetailScreen(),
+    name: BarberaRoutes.profile,
+    page: () => const BarberaCustomBottomNavigationBar(selectedIndex: 4),
   ),
   GetPage<dynamic>(
-    name: ShuppyRoutes.payment,
-    page: () => const ShuppyPaymentScreen(),
+    name: BarberaRoutes.filter,
+    page: () => const BarberaFilterScreen(),
   ),
   GetPage<dynamic>(
-    name: ShuppyRoutes.paymentSuccess,
-    page: () => const ShuppyPaymentSuccessScreen(),
+    name: BarberaRoutes.chat,
+    page: () => const BarberaChatScreen(),
   ),
   GetPage<dynamic>(
-    name: ShuppyRoutes.product,
-    page: () => const ShuppyProductScreen(),
+    name: BarberaRoutes.appointment,
+    page: () => const BarberaAppointmentScreen(),
   ),
   GetPage<dynamic>(
-    name: ShuppyRoutes.profile,
-    page: () => const ShuppyBottomNavigationScreen(initialIndex: 3),
+    name: BarberaRoutes.appointmentDetail,
+    page: () => const BarberaAppointmentDetailScreen(),
   ),
   GetPage<dynamic>(
-    name: ShuppyRoutes.signIn,
-    page: () => const ShuppySignInScreen(),
+    name: BarberaRoutes.favorite,
+    page: () => const BarberaFavoriteScreen(),
   ),
   GetPage<dynamic>(
-    name: ShuppyRoutes.signUp,
-    page: () => const ShuppySignUpScreen(),
+    name: BarberaRoutes.paymentMethod,
+    page: () => const BarberaPaymentMethodScreen(),
   ),
-
+  GetPage<dynamic>(
+    name: BarberaRoutes.addCreditCard,
+    page: () => const BarberaAddCreditCardScreen(),
+  ),
+  GetPage<dynamic>(
+    name: BarberaRoutes.paypal,
+    page: () => const BarberaPaypalScreen(),
+  ),
+  GetPage<dynamic>(
+    name: BarberaRoutes.support,
+    page: () => const BarberaSupportScreen(),
+  ),
+  GetPage<dynamic>(
+    name: BarberaRoutes.language,
+    page: () => const BarberaLanguageScreen(),
+  ),
+  GetPage<dynamic>(
+    name: BarberaRoutes.about,
+    page: () => const BarberaAboutScreen(),
+  ),
+  GetPage<dynamic>(
+    name: BarberaRoutes.following,
+    page: () => const BarberaFollowingScreen(),
+  ),
+  GetPage<dynamic>(
+    name: BarberaRoutes.follower,
+    page: () => const BarberaFollowersScreen(),
+  ),
+  GetPage<dynamic>(
+    name: BarberaRoutes.like,
+    page: () => const BarberaLikeScreen(),
+  ),
+  GetPage<dynamic>(
+    name: BarberaRoutes.setting,
+    page: () => const BarberaSettingScreen(),
+  ),
+  GetPage<dynamic>(
+    name: BarberaRoutes.notification,
+    page: () => const BarberaNotificationScreen(),
+  ),
+  GetPage<dynamic>(
+    name: BarberaRoutes.browseBarbershop,
+    page: () => const BarberaBrowseBarbershopScreen(),
+  ),
+  GetPage<dynamic>(
+    name: BarberaRoutes.browseBarber,
+    page: () => const BarberaBrowseBarberScreen(),
+  ),
+  GetPage<dynamic>(
+    name: BarberaRoutes.profileEdit,
+    page: () => const BarberaProfileEditScreen(),
+  ),
+  GetPage<dynamic>(
+    name: BarberaRoutes.search,
+    page: () => const BarberaSearchScreen(),
+  ),
+  GetPage<dynamic>(
+    name: BarberaRoutes.barbershop,
+    page: () => const BarberaBarbershopScreen(),
+  ),
+  GetPage<dynamic>(
+    name: BarberaRoutes.barber,
+    page: () => const BarberaBarberScreen(),
+  ),
+  GetPage<dynamic>(
+    name: BarberaRoutes.gallery,
+    page: () => const BarberaGalleryScreen(),
+  ),
+  GetPage<dynamic>(
+    name: BarberaRoutes.comment,
+    page: () => const BarberaCommentScreen(),
+  ),
+  GetPage<dynamic>(
+    name: BarberaRoutes.bookingService,
+    page: () => const BarberaBookingServiceScreen(),
+  ),
+  GetPage<dynamic>(
+    name: BarberaRoutes.schedule,
+    page: () => const BarberaScheduleScreen(),
+  ),
+  GetPage<dynamic>(
+    name: BarberaRoutes.bookingDetail,
+    page: () => const BarberaBookingDetailScreen(),
+  ),
+  GetPage<dynamic>(
+    name: BarberaRoutes.bookingPayment,
+    page: () => const BarberaBookingPaymentScreen(),
+  ),
+  GetPage<dynamic>(
+    name: BarberaRoutes.bookingSuccess,
+    page: () => const BarberaBookingSuccessScreen(),
+  ),
 ];

@@ -14,7 +14,7 @@ enum ThemeUIKit {
 }
 
 class ThemeProvider extends ChangeNotifier {
-  bool _isDarkTheme = true;
+  bool _isDarkTheme = false;
   bool get isDarkTheme => _isDarkTheme;
 
   ThemeUIKit _themeUIKit = ThemeUIKit.barbera;

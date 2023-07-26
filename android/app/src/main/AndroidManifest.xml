@@ -8,7 +8,7 @@
 
 
    <application
-        android:label="Hobby"
+        android:label="flutima_remake"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
