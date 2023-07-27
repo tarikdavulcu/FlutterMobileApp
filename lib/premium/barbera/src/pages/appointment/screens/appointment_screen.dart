@@ -4,17 +4,18 @@ class BarberaAppointmentScreen extends StatefulWidget {
   const BarberaAppointmentScreen({Key? key}) : super(key: key);
 
   @override
-  State<BarberaAppointmentScreen> createState() => _BarberaAppointmentScreenState();
+  State<BarberaAppointmentScreen> createState() =>
+      _BarberaAppointmentScreenState();
 }
 
 class _BarberaAppointmentScreenState extends State<BarberaAppointmentScreen> {
-  bool _isFromProfile = false;
+  // bool _isFromProfile = false;
 
   @override
   void initState() {
     super.initState();
     if (Get.arguments != null) {
-      _isFromProfile = Get.arguments as bool;
+      // _isFromProfile = Get.arguments as bool;
     }
   }
 
@@ -28,7 +29,7 @@ class _BarberaAppointmentScreenState extends State<BarberaAppointmentScreen> {
         appBar: CustomAppBar(
           context,
           title: AppLocalizations.of(context)!.appointment,
-          enableLeading: _isFromProfile,
+          enableLeading: true,
           bottom: PreferredSize(
             preferredSize: const Size.fromHeight(50),
             child: Container(

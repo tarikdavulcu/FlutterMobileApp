@@ -4,7 +4,8 @@ class BarberaProfileEditScreen extends StatefulWidget {
   const BarberaProfileEditScreen({Key? key}) : super(key: key);
 
   @override
-  State<BarberaProfileEditScreen> createState() => _BarberaProfileEditScreenState();
+  State<BarberaProfileEditScreen> createState() =>
+      _BarberaProfileEditScreenState();
 }
 
 class _BarberaProfileEditScreenState extends State<BarberaProfileEditScreen> {
@@ -16,8 +17,10 @@ class _BarberaProfileEditScreenState extends State<BarberaProfileEditScreen> {
   @override
   void initState() {
     super.initState();
-    _emailController = TextEditingController(text: '');
-    _fullNameController = TextEditingController(text: '');
+    _emailController = TextEditingController(text: email);
+    _fullNameController = TextEditingController(text: name);
+    name = _fullNameController.text;
+    _selectedDate = birthday;
   }
 
   @override
@@ -42,8 +45,10 @@ class _BarberaProfileEditScreenState extends State<BarberaProfileEditScreen> {
   }
 
   @override
-  Widget build(BuildContext context) { 
+  Widget build(BuildContext context) {
+    User? user = FirebaseAuth.instance.currentUser;
 
+    fetchDoc(user!.uid.toString());
     return Scaffold(
       appBar: CustomAppBar(
         context,
@@ -67,6 +72,7 @@ class _BarberaProfileEditScreenState extends State<BarberaProfileEditScreen> {
           CustomElevatedButton(
             onTap: () {
               setState(() => _isLoading = true);
+              updateUser(user.uid.toString(), _fullNameController);
               Future.delayed(const Duration(seconds: 2), () {
                 setState(() => _isLoading = false);
                 Get.back<dynamic>();
@@ -82,4 +88,34 @@ class _BarberaProfileEditScreenState extends State<BarberaProfileEditScreen> {
       ),
     );
   }
+}
+
+String name = "";
+String email = "";
+String birthday = "";
+fetchDoc(String uid) async {
+  // enter here the path , from where you want to fetch the doc
+  DocumentSnapshot pathData =
+      await FirebaseFirestore.instance.collection('users').doc(uid).get();
+
+  if (pathData.exists) {
+    Map<String, dynamic>? fetchDoc = pathData.data() as Map<String, dynamic>?;
+
+    //Now use fetchDoc?['KEY_names'], to access the data from firestore, to perform operations , for eg
+    name = fetchDoc?['name'];
+    email = fetchDoc?['email'];
+    birthday = fetchDoc?['birthday'];
+    // setState(() {});  // use only if needed
+  }
+}
+
+Future<void> updateUser(String uid, TextEditingController name) {
+  CollectionReference users = FirebaseFirestore.instance.collection('users');
+  return users
+      .doc(uid)
+      .update({'name': name.text})
+      // ignore: avoid_print
+      .then((value) => print("User Updated"))
+      // ignore: avoid_print
+      .catchError((error) => print("Failed to update user: $error"));
 }

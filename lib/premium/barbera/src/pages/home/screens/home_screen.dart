@@ -5,6 +5,7 @@ class BarneraHomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     User? user = FirebaseAuth.instance.currentUser;
+
     // ignore: avoid_print
     showToast(msg: "Hi: ${user!.email}");
     return Scaffold(

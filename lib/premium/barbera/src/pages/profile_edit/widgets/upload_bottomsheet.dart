@@ -49,7 +49,9 @@ Future<dynamic> _uploadBottomSheet(BuildContext context) {
                     label: AppLocalizations.of(context)!.gallery,
                     onTap: () {
                       Get.back<dynamic>();
-                      showToast(msg: AppLocalizations.of(context)!.open_gallery_tapped);
+                      showToast(
+                          msg: AppLocalizations.of(context)!
+                              .open_gallery_tapped);
                     },
                   ),
                   const SizedBox(width: Const.space25),
@@ -58,7 +60,8 @@ Future<dynamic> _uploadBottomSheet(BuildContext context) {
                     label: AppLocalizations.of(context)!.camera,
                     onTap: () {
                       Get.back<dynamic>();
-                      showToast(msg: AppLocalizations.of(context)!.camera_on_click);
+                      showToast(
+                          msg: AppLocalizations.of(context)!.camera_on_click);
                     },
                   ),
                 ],

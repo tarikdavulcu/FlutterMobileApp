@@ -7,6 +7,18 @@ class _BuildHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    User? user = FirebaseAuth.instance.currentUser;
+    fetchDoc(user!.uid.toString());
+
+    //Table Tüm Datayı Çeker
+    // FirebaseFirestore.instance
+    //     .collection('users')
+    //     .get()
+    //     .then((QuerySnapshot querySnapshot) {
+    //   querySnapshot.docs.forEach((doc) {
+    //     print(doc["name"]);
+    //   });
+    // });
     final theme = Theme.of(context);
     return Container(
       width: Screens.width(context),
@@ -30,18 +42,19 @@ class _BuildHeader extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Jessica Veranda',
+                      ad.toString(),
                       style: theme.textTheme.headlineLarge,
                     ),
                     const SizedBox(height: Const.space5),
                     Text(
-                      'jscvrnd19@gmail.com',
+                      user.email.toString(),
                       style: theme.textTheme.bodyMedium,
                     ),
                     const SizedBox(height: Const.space15),
                     CustomElevatedButton(
                       height: 30,
-                      onTap: () => Get.toNamed<dynamic>(BarberaRoutes.profileEdit),
+                      onTap: () =>
+                          Get.toNamed<dynamic>(BarberaRoutes.profileEdit),
                       label: AppLocalizations.of(context)!.edit_profile,
                     )
                   ],
@@ -59,7 +72,10 @@ class _BuildHeader extends StatelessWidget {
                   onTap: () => Get.toNamed<dynamic>(BarberaRoutes.following),
                   child: Column(
                     children: [
-                      Text('128', style: theme.textTheme.headlineSmall?.copyWith(fontSize: 14,)),
+                      Text('128',
+                          style: theme.textTheme.headlineSmall?.copyWith(
+                            fontSize: 14,
+                          )),
                       Text(
                         AppLocalizations.of(context)!.following,
                         style: theme.textTheme.bodyMedium,
@@ -74,7 +90,10 @@ class _BuildHeader extends StatelessWidget {
                   onTap: () => Get.toNamed<dynamic>(BarberaRoutes.follower),
                   child: Column(
                     children: [
-                      Text('640', style: theme.textTheme.headlineSmall?.copyWith(fontSize: 14,)),
+                      Text('640',
+                          style: theme.textTheme.headlineSmall?.copyWith(
+                            fontSize: 14,
+                          )),
                       Text(
                         AppLocalizations.of(context)!.follower,
                         style: theme.textTheme.bodyMedium,
@@ -89,7 +108,10 @@ class _BuildHeader extends StatelessWidget {
                   onTap: () => Get.toNamed<dynamic>(BarberaRoutes.like),
                   child: Column(
                     children: [
-                      Text('240', style: theme.textTheme.headlineSmall?.copyWith(fontSize: 14,)),
+                      Text('240',
+                          style: theme.textTheme.headlineSmall?.copyWith(
+                            fontSize: 14,
+                          )),
                       Text(
                         AppLocalizations.of(context)!.likes,
                         style: theme.textTheme.bodyMedium,
@@ -103,5 +125,21 @@ class _BuildHeader extends StatelessWidget {
         ],
       ),
     );
+  }
+}
+
+String ad = "";
+fetchDoc(String uid) async {
+  // enter here the path , from where you want to fetch the doc
+  DocumentSnapshot pathData =
+      await FirebaseFirestore.instance.collection('users').doc(uid).get();
+
+  if (pathData.exists) {
+    Map<String, dynamic>? fetchDoc = pathData.data() as Map<String, dynamic>?;
+
+    //Now use fetchDoc?['KEY_names'], to access the data from firestore, to perform operations , for eg
+    ad = fetchDoc?['name'];
+
+    // setState(() {});  // use only if needed
   }
 }
