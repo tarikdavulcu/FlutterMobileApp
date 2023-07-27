@@ -2,9 +2,11 @@ part of '../home_page.dart';
 
 class BarneraHomeScreen extends StatelessWidget {
   const BarneraHomeScreen({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
+    User? user = FirebaseAuth.instance.currentUser;
+    // ignore: avoid_print
+    showToast(msg: "Hi: ${user!.email}");
     return Scaffold(
       body: ListView(
         children: [

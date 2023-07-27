@@ -54,6 +54,8 @@ import 'package:ultimate_bundle/premium/barbera/src/pages/social_network_sign_in
 import 'package:ultimate_bundle/premium/barbera/src/pages/support/support_page.dart';
 import 'package:ultimate_bundle/premium/barbera/src/widgets/custom_bottom_navigation_bar.dart';
 
+import '../../premium/barbera/src/pages/sign_up/sign_up_page.dart';
+
 List<GetPage> allRoutesFlutima = [
   // Core
   GetPage<dynamic>(
@@ -154,7 +156,7 @@ List<GetPage> allRoutesFlutima = [
   ),
   GetPage<dynamic>(
     name: BarberaRoutes.signUp,
-    page: () => const BarberaSignInScreen(),
+    page: () => const BarberaSignUpScreen(),
   ),
   GetPage<dynamic>(
     name: BarberaRoutes.phoneVerification,
@@ -170,7 +172,9 @@ List<GetPage> allRoutesFlutima = [
   ),
   GetPage<dynamic>(
     name: BarberaRoutes.nearby,
-    page: () => const BarberaCustomBottomNavigationBar(selectedIndex: 1),
+    page: () => const BarberaCustomBottomNavigationBar(
+      selectedIndex: 1,
+    ),
   ),
   GetPage<dynamic>(
     name: BarberaRoutes.inbox,
@@ -182,7 +186,9 @@ List<GetPage> allRoutesFlutima = [
   ),
   GetPage<dynamic>(
     name: BarberaRoutes.profile,
-    page: () => const BarberaCustomBottomNavigationBar(selectedIndex: 4),
+    page: () => const BarberaCustomBottomNavigationBar(
+      selectedIndex: 4,
+    ),
   ),
   GetPage<dynamic>(
     name: BarberaRoutes.filter,

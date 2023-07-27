@@ -53,12 +53,14 @@ class _BarberaSignInScreenState extends State<BarberaSignInScreen> {
                   setState(() => _isLoading = true);
 
                   try {
-                    await FirebaseAuth.instance.signInWithEmailAndPassword(
-                        email: _emailController.text,
-                        password: _passwordController.text);
+                    var user = await FirebaseAuth.instance
+                        .signInWithEmailAndPassword(
+                            email: _emailController.text,
+                            password: _passwordController.text);
                     Future.delayed(const Duration(seconds: 2), () {
                       setState(() => _isLoading = false);
-                      Get.offAllNamed<dynamic>(BarberaRoutes.home);
+                      Get.offAllNamed<dynamic>(BarberaRoutes.home,
+                          arguments: [user.user!.uid.toString()]);
                     });
                   } on FirebaseAuthException catch (e) {
                     if (e.code == 'user-not-found') {

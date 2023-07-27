@@ -17,6 +17,8 @@ class _BarberaSignUpScreenState extends State<BarberaSignUpScreen> {
   bool _obscureText = true;
   bool _isLoading = false;
 
+  late String token;
+
   @override
   void initState() {
     super.initState();
@@ -51,6 +53,25 @@ class _BarberaSignUpScreenState extends State<BarberaSignUpScreen> {
 
   @override
   Widget build(BuildContext context) {
+    CollectionReference users = FirebaseFirestore.instance.collection('users');
+
+    // ignore: unused_element
+    Future<void> addUser() {
+      // Call the user's CollectionReference to add a new user
+      return users
+          .doc(token)
+          .set({
+            'name': _fullNameController.text,
+            'email': _emailController.text,
+            'birthday': _dateOfBirth,
+          })
+
+          // ignore: avoid_print
+          .then((value) => print("User Added"))
+          // ignore: avoid_print
+          .catchError((error) => print("Failed to add user: $error"));
+    }
+
     return Scaffold(
       appBar: CustomAppBar(context),
       body: ListView(
@@ -85,12 +106,55 @@ class _BarberaSignUpScreenState extends State<BarberaSignUpScreen> {
           const SizedBox(height: Const.space25),
           CustomElevatedButton(
             isLoading: _isLoading,
-            onTap: () {
+            onTap: () async {
               setState(() => _isLoading = true);
-              Future.delayed(const Duration(seconds: 2), () {
+              try {
+                var token = await FirebaseAuth.instance
+                    .createUserWithEmailAndPassword(
+                        email: _emailController.text,
+                        password: _passwordController.text);
+                this.token = token.user!.uid.toString();
+                addUser();
+                // var acs = ActionCodeSettings(
+                //     // URL you want to redirect back to. The domain (www.example.com) for this
+                //     // URL must be whitelisted in the Firebase Console.
+                //     url: 'https://www.example.com/finishSignUp?cartId=1234',
+                //     // This must be true
+                //     handleCodeInApp: true,
+                //     iOSBundleId: 'com.example.ios',
+                //     androidPackageName: 'com.example.android',
+                //     // installIfNotAvailable
+                //     androidInstallApp: true,
+                //     // minimumVersion
+                //     androidMinimumVersion: '12');
+                // var emailAuth = _emailController.text;
+                // FirebaseAuth.instance
+                //     .sendSignInLinkToEmail(
+                //         email: emailAuth, actionCodeSettings: acs)
+                //     .catchError((onError) =>
+                //         print('Error sending email verification $onError'))
+                //     .then((value) =>
+                //         print('Successfully sent email verification'));
+
+                Future.delayed(const Duration(seconds: 2), () {
+                  setState(() => _isLoading = false);
+                  Get.toNamed<dynamic>(BarberaRoutes.home);
+                });
+              } on FirebaseAuthException catch (e) {
+                if (e.code == 'weak-password') {
+                  showToast(msg: "The password provided is too weak.");
+                  setState(() => _isLoading = false);
+                  //print('The password provided is too weak.');
+                } else if (e.code == 'email-already-in-use') {
+                  // print('The account already exists for that email.');
+                  showToast(msg: "The account already exists for that email.");
+                  setState(() => _isLoading = false);
+                }
+              } catch (e) {
+                // print(e);
+                showToast(msg: e.toString());
                 setState(() => _isLoading = false);
-                Get.toNamed<dynamic>(BarberaRoutes.phoneVerification);
-              });
+              }
             },
             label: AppLocalizations.of(context)!.create_account,
             labelLoading: AppLocalizations.of(context)!.please_wait,

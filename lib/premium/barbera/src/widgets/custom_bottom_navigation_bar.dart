@@ -17,9 +17,11 @@ class BarberaCustomBottomNavigationBar extends StatefulWidget {
       BarberaCustomBottomNavigationBarState();
 }
 
-class BarberaCustomBottomNavigationBarState extends State<BarberaCustomBottomNavigationBar> {
+class BarberaCustomBottomNavigationBarState
+    extends State<BarberaCustomBottomNavigationBar> {
   late PageController _controller;
   int _selectedIndex = 0;
+
   @override
   void initState() {
     super.initState();

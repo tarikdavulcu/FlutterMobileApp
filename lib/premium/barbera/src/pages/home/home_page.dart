@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -6,6 +7,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:octo_image/octo_image.dart';
 import 'package:ultimate_bundle/flutima/helpers/constants.dart';
+import 'package:ultimate_bundle/freebies/ecommerce_1/helpers/snack_toast.dart';
 import 'package:ultimate_bundle/premium/barbera/src/helpers/constans.dart';
 import 'package:ultimate_bundle/premium/barbera/src/helpers/screens.dart';
 import 'package:ultimate_bundle/premium/barbera/src/mock_data/barber_mock.dart';
