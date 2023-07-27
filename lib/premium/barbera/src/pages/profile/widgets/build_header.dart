@@ -8,8 +8,20 @@ class _BuildHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     User? user = FirebaseAuth.instance.currentUser;
-    fetchDoc(user!.uid.toString());
+    // fetchDoc(user!.uid.toString());
 
+    final docRef =
+        FirebaseFirestore.instance.collection("users").doc(user!.uid);
+    docRef.snapshots().listen(
+      (event) {
+        // ignore: avoid_print
+        print(
+            "AAAAAAAAAAAAAAAAAAAAAAAAA current data: ${event.data()!["name"].toString()}");
+        ad = event.data()!["name"].toString();
+      },
+      // ignore: avoid_print
+      onError: (error) => print("Listen failed: $error"),
+    );
     //Table Tüm Datayı Çeker
     // FirebaseFirestore.instance
     //     .collection('users')

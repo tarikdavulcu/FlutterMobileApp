@@ -1,9 +1,10 @@
 part of '../home_page.dart';
 
 class _BuildHeader extends StatelessWidget {
-  const _BuildHeader({
-    Key? key,
-  }) : super(key: key);
+  // ignore: non_constant_identifier_names
+  const _BuildHeader({Key? key, required this.UserName}) : super(key: key);
+  // ignore: non_constant_identifier_names
+  final String UserName;
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +69,7 @@ class _BuildHeader extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'Hi, Alex!',
+                              'Hi, $UserName',
                               style: theme.textTheme.headlineSmall?.copyWith(
                                 color: Colors.white,
                               ),
@@ -87,7 +88,8 @@ class _BuildHeader extends StatelessWidget {
                       ),
                       const SizedBox(width: Const.space12),
                       InkWell(
-                        onTap: () => Get.toNamed<dynamic>(BarberaRoutes.notification),
+                        onTap: () =>
+                            Get.toNamed<dynamic>(BarberaRoutes.notification),
                         borderRadius: BorderRadius.circular(Const.space12),
                         child: Container(
                           width: 40,
@@ -108,7 +110,7 @@ class _BuildHeader extends StatelessWidget {
                 ),
                 const SizedBox(height: Const.space25 * 2),
                 InkWell(
-                  onTap: ()=> Get.toNamed<dynamic>(BarberaRoutes.search),
+                  onTap: () => Get.toNamed<dynamic>(BarberaRoutes.search),
                   child: Container(
                     width: double.infinity,
                     height: 45,
@@ -126,7 +128,7 @@ class _BuildHeader extends StatelessWidget {
                           color: Colors.white,
                         ),
                         const SizedBox(width: Const.space12),
-                        Text( 
+                        Text(
                           AppLocalizations.of(context)!
                               .search_for_barbershop_name,
                           style: theme.textTheme.bodyLarge?.copyWith(

@@ -23,12 +23,12 @@ class _BarberaProfileEditScreenState extends State<BarberaProfileEditScreen> {
     _selectedDate = birthday;
   }
 
-  @override
-  void dispose() {
-    super.dispose();
-    _emailController.dispose();
-    _fullNameController.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   super.dispose();
+  //   _emailController.dispose();
+  //   _fullNameController.dispose();
+  // }
 
   Future<void> _selectDate(BuildContext context) async {
     final picked = await showDatePicker(
@@ -48,7 +48,22 @@ class _BarberaProfileEditScreenState extends State<BarberaProfileEditScreen> {
   Widget build(BuildContext context) {
     User? user = FirebaseAuth.instance.currentUser;
 
-    fetchDoc(user!.uid.toString());
+    final docRef =
+        FirebaseFirestore.instance.collection("users").doc(user!.uid);
+    docRef.snapshots().listen(
+      (event) {
+        // ignore: avoid_print
+        print(
+            "AAAAAAAAAAAAAAAAAAAAAAAAA current data: ${event.data()!["name"].toString()}");
+        _fullNameController.text = event.data()!["name"].toString();
+        _emailController.text = event.data()!["email"].toString();
+        _selectedDate = event.data()!["birthday"].toString();
+      },
+      // ignore: avoid_print
+      onError: (error) => print("Listen failed: $error"),
+    );
+
+    fetchDoc(user.uid.toString());
     return Scaffold(
       appBar: CustomAppBar(
         context,
@@ -72,7 +87,8 @@ class _BarberaProfileEditScreenState extends State<BarberaProfileEditScreen> {
           CustomElevatedButton(
             onTap: () {
               setState(() => _isLoading = true);
-              updateUser(user.uid.toString(), _fullNameController);
+              updateUser(user.uid.toString(), _fullNameController,
+                  _emailController, _selectedDate);
               Future.delayed(const Duration(seconds: 2), () {
                 setState(() => _isLoading = false);
                 Get.back<dynamic>();
@@ -109,13 +125,15 @@ fetchDoc(String uid) async {
   }
 }
 
-Future<void> updateUser(String uid, TextEditingController name) {
+String updateUser(String uid, TextEditingController name,
+    TextEditingController email, String birthday) {
   CollectionReference users = FirebaseFirestore.instance.collection('users');
-  return users
+  users
       .doc(uid)
-      .update({'name': name.text})
+      .update({'name': name.text, 'email': email.text, 'birthday': birthday})
       // ignore: avoid_print
       .then((value) => print("User Updated"))
       // ignore: avoid_print
       .catchError((error) => print("Failed to update user: $error"));
+  return name.text.toString();
 }

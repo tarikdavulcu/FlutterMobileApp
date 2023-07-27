@@ -8,10 +8,13 @@ class BarneraHomeScreen extends StatelessWidget {
 
     // ignore: avoid_print
     showToast(msg: "Hi: ${user!.email}");
+    List<String>? result = user.email?.split('@');
     return Scaffold(
       body: ListView(
         children: [
-          const _BuildHeader(),
+          _BuildHeader(
+            UserName: result!.first.toString(),
+          ),
           const _BuildScrollableCategory(),
           const SizedBox(height: Const.space25),
           _BuildScrollableBarbershop(
