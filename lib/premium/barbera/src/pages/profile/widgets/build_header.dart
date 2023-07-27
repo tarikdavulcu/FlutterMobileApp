@@ -9,9 +9,8 @@ class _BuildHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     User? user = FirebaseAuth.instance.currentUser;
     // fetchDoc(user!.uid.toString());
-
-    final docRef =
-        FirebaseFirestore.instance.collection("users").doc(user!.uid);
+    printUrl(user!.uid);
+    final docRef = FirebaseFirestore.instance.collection("users").doc(user.uid);
     docRef.snapshots().listen(
       (event) {
         // ignore: avoid_print
@@ -44,9 +43,10 @@ class _BuildHeader extends StatelessWidget {
               CircleAvatar(
                 radius: 35,
                 backgroundColor: theme.unselectedWidgetColor,
-                backgroundImage: const CachedNetworkImageProvider(
-                  Assets.profilePhoto,
-                ),
+                // ignore: unnecessary_null_comparison
+                backgroundImage: imageUrl != null
+                    ? CachedNetworkImageProvider(imageUrl)
+                    : const CachedNetworkImageProvider(Assets.profilePhoto),
               ),
               const SizedBox(width: Const.space15),
               Expanded(
@@ -154,4 +154,17 @@ fetchDoc(String uid) async {
 
     // setState(() {});  // use only if needed
   }
+}
+
+String imageUrl = "";
+Future<String> printUrl(String uid) async {
+  final storageRef =
+      FirebaseStorage.instance.ref().child("UserProfilePhotos/$uid.jpg");
+
+  String url = (await storageRef.getDownloadURL()).toString();
+  // ignore: avoid_print
+  print(url);
+
+  imageUrl = url;
+  return url;
 }

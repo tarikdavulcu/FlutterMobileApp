@@ -2,12 +2,17 @@ part of '../home_page.dart';
 
 class _BuildHeader extends StatelessWidget {
   // ignore: non_constant_identifier_names
-  const _BuildHeader({Key? key, required this.UserName}) : super(key: key);
+  const _BuildHeader({Key? key, required this.UserName, required this.uid})
+      : super(key: key);
   // ignore: non_constant_identifier_names
   final String UserName;
+  final String uid;
 
   @override
   Widget build(BuildContext context) {
+    //final pathReference = storageRef.child("UserProfilePhotos/$uid.jpg");
+    printUrl(uid);
+
     final theme = Theme.of(context);
 
     return Container(
@@ -16,6 +21,7 @@ class _BuildHeader extends StatelessWidget {
       decoration: const BoxDecoration(
         image: DecorationImage(
           fit: BoxFit.cover,
+          // ignore: unnecessary_null_comparison
           image: CachedNetworkImageProvider(Assets.image1),
         ),
       ),
@@ -55,11 +61,13 @@ class _BuildHeader extends StatelessWidget {
                         height: 45,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(Const.space12),
-                          image: const DecorationImage(
+                          image: DecorationImage(
                             fit: BoxFit.cover,
-                            image: CachedNetworkImageProvider(
-                              Assets.profilePhoto,
-                            ),
+                            // ignore: unnecessary_null_comparison
+                            image: imageUrl != null
+                                ? CachedNetworkImageProvider(imageUrl)
+                                : const CachedNetworkImageProvider(
+                                    Assets.profilePhoto),
                           ),
                         ),
                       ),
@@ -146,4 +154,17 @@ class _BuildHeader extends StatelessWidget {
       ),
     );
   }
+}
+
+String imageUrl = "";
+Future<String> printUrl(String uid) async {
+  final storageRef =
+      FirebaseStorage.instance.ref().child("UserProfilePhotos/$uid.jpg");
+
+  String url = (await storageRef.getDownloadURL()).toString();
+  // ignore: avoid_print
+  print(url);
+
+  imageUrl = url;
+  return url;
 }

@@ -7,6 +7,9 @@ class _BuildCircleAvatar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    User? user = FirebaseAuth.instance.currentUser;
+    // fetchDoc(user!.uid.toString());
+    printUrl(user!.uid);
     final theme = Theme.of(context);
     return Center(
       child: InkWell(
@@ -15,9 +18,10 @@ class _BuildCircleAvatar extends StatelessWidget {
         child: CircleAvatar(
           radius: 60,
           backgroundColor: theme.disabledColor,
-          backgroundImage: const CachedNetworkImageProvider(
-            Assets.profilePhoto,
-          ),
+          // ignore: unnecessary_null_comparison
+          backgroundImage: imageUrl != null
+              ? CachedNetworkImageProvider(imageUrl)
+              : const CachedNetworkImageProvider(Assets.profilePhoto),
           child: Container(
             width: 120,
             height: 120,

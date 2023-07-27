@@ -14,6 +14,7 @@ class BarneraHomeScreen extends StatelessWidget {
         children: [
           _BuildHeader(
             UserName: result!.first.toString(),
+            uid: user.uid.toString(),
           ),
           const _BuildScrollableCategory(),
           const SizedBox(height: Const.space25),

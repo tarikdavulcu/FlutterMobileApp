@@ -15,6 +15,8 @@ import 'package:ultimate_bundle/premium/barbera/src/widgets/custom_app_bar.dart'
 import 'package:ultimate_bundle/premium/barbera/src/widgets/custom_elevated_button.dart';
 import 'package:ultimate_bundle/premium/barbera/src/widgets/custom_text_form_field.dart';
 
+import '../home/home_page.dart';
+
 part 'screens/profile_edit_screen.dart';
 part 'widgets/build_birthday_datepicker.dart';
 part 'widgets/build_circle_avatar.dart';
