@@ -11,8 +11,13 @@ class _BuildHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //final pathReference = storageRef.child("UserProfilePhotos/$uid.jpg");
-    printUrl(uid);
-
+    UserCredential usr = Get.arguments[0];
+    //printUrl(usr.user!.uid);
+    // usr.user
+    //     ?.updatePhotoURL(imageUrl.toString())
+    //     // ignore: avoid_print
+    //     .then((value) => print("profil image Updated"));
+    imageUrl = usr.user!.photoURL!;
     final theme = Theme.of(context);
 
     return Container(
@@ -157,14 +162,14 @@ class _BuildHeader extends StatelessWidget {
 }
 
 String imageUrl = "";
-Future<String> printUrl(String uid) async {
-  final storageRef =
-      FirebaseStorage.instance.ref().child("UserProfilePhotos/$uid.jpg");
+// Future<String> printUrl(String uid) async {
+//   final storageRef =
+//       FirebaseStorage.instance.ref().child("UserProfilePhotos/$uid.jpg");
 
-  String url = (await storageRef.getDownloadURL()).toString();
-  // ignore: avoid_print
-  print(url);
+//   String url = (await storageRef.getDownloadURL()).toString();
+//   // ignore: avoid_print
+//   print(url);
 
-  imageUrl = url;
-  return url;
-}
+//   imageUrl = url;
+//   return url;
+// }

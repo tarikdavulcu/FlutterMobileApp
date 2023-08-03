@@ -7,16 +7,18 @@ class _BuildHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    User? user = FirebaseAuth.instance.currentUser;
-    // fetchDoc(user!.uid.toString());
-    printUrl(user!.uid);
-    final docRef = FirebaseFirestore.instance.collection("users").doc(user.uid);
+    UserCredential user = Get.arguments[0];
+    fetchDoc(user.user!.uid.toString());
+    imageUrl = user.user!.photoURL!;
+    namee = user.user!.displayName!;
+    //printUrl(user.user!.uid);
+    final docRef =
+        FirebaseFirestore.instance.collection("users").doc(user.user!.uid);
     docRef.snapshots().listen(
       (event) {
         // ignore: avoid_print
         print(
             "AAAAAAAAAAAAAAAAAAAAAAAAA current data: ${event.data()!["name"].toString()}");
-        ad = event.data()!["name"].toString();
       },
       // ignore: avoid_print
       onError: (error) => print("Listen failed: $error"),
@@ -54,19 +56,20 @@ class _BuildHeader extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      ad.toString(),
+                      namee.toString(),
                       style: theme.textTheme.headlineLarge,
                     ),
                     const SizedBox(height: Const.space5),
                     Text(
-                      user.email.toString(),
+                      user.user!.email.toString(),
                       style: theme.textTheme.bodyMedium,
                     ),
                     const SizedBox(height: Const.space15),
                     CustomElevatedButton(
                       height: 30,
-                      onTap: () =>
-                          Get.toNamed<dynamic>(BarberaRoutes.profileEdit),
+                      onTap: () => Get.toNamed<dynamic>(
+                          BarberaRoutes.profileEdit,
+                          arguments: [user]),
                       label: AppLocalizations.of(context)!.edit_profile,
                     )
                   ],
@@ -140,7 +143,7 @@ class _BuildHeader extends StatelessWidget {
   }
 }
 
-String ad = "";
+String namee = "";
 fetchDoc(String uid) async {
   // enter here the path , from where you want to fetch the doc
   DocumentSnapshot pathData =
@@ -150,7 +153,9 @@ fetchDoc(String uid) async {
     Map<String, dynamic>? fetchDoc = pathData.data() as Map<String, dynamic>?;
 
     //Now use fetchDoc?['KEY_names'], to access the data from firestore, to perform operations , for eg
-    ad = fetchDoc?['name'];
+    namee = fetchDoc?['name'];
+    // ignore: avoid_print
+    print("Addddd $namee");
 
     // setState(() {});  // use only if needed
   }

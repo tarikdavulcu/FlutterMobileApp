@@ -7,9 +7,11 @@ class _BuildCircleAvatar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    User? user = FirebaseAuth.instance.currentUser;
+    // User? user = FirebaseAuth.instance.currentUser;
+    UserCredential usr = Get.arguments[0];
+    imageUrl = usr.user!.photoURL!;
     // fetchDoc(user!.uid.toString());
-    printUrl(user!.uid);
+    //printUrl(user!.uid);
     final theme = Theme.of(context);
     return Center(
       child: InkWell(

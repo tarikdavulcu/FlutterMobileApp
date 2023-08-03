@@ -46,10 +46,10 @@ class _BarberaProfileEditScreenState extends State<BarberaProfileEditScreen> {
 
   @override
   Widget build(BuildContext context) {
-    User? user = FirebaseAuth.instance.currentUser;
-
+    //User? user = FirebaseAuth.instance.currentUser;
+    UserCredential user = Get.arguments[0];
     final docRef =
-        FirebaseFirestore.instance.collection("users").doc(user!.uid);
+        FirebaseFirestore.instance.collection("users").doc(user.user!.uid);
     docRef.snapshots().listen(
       (event) {
         // ignore: avoid_print
@@ -63,7 +63,7 @@ class _BarberaProfileEditScreenState extends State<BarberaProfileEditScreen> {
       onError: (error) => print("Listen failed: $error"),
     );
 
-    fetchDoc(user.uid.toString());
+    fetchDoc(user.user!.uid.toString());
     return Scaffold(
       appBar: CustomAppBar(
         context,
@@ -87,8 +87,8 @@ class _BarberaProfileEditScreenState extends State<BarberaProfileEditScreen> {
           CustomElevatedButton(
             onTap: () {
               setState(() => _isLoading = true);
-              updateUser(user.uid.toString(), _fullNameController,
-                  _emailController, _selectedDate);
+              updateUser(
+                  user, _fullNameController, _emailController, _selectedDate);
               Future.delayed(const Duration(seconds: 2), () {
                 setState(() => _isLoading = false);
                 Get.back<dynamic>();
@@ -125,11 +125,22 @@ fetchDoc(String uid) async {
   }
 }
 
-String updateUser(String uid, TextEditingController name,
+String updateUser(UserCredential user, TextEditingController name,
     TextEditingController email, String birthday) {
   CollectionReference users = FirebaseFirestore.instance.collection('users');
+
+  user.user
+      ?.updateDisplayName(name.text.toString())
+      // ignore: avoid_print
+      .then((value) => print("name Updated"));
+  user.user
+      ?.updatePhotoURL(imageUrl.toString())
+      // ignore: avoid_print
+      .then((value) => print("profil image Updated"));
+  // ignore: avoid_print
+  print(user);
   users
-      .doc(uid)
+      .doc(user.user!.uid)
       .update({'name': name.text, 'email': email.text, 'birthday': birthday})
       // ignore: avoid_print
       .then((value) => print("User Updated"))
@@ -137,3 +148,16 @@ String updateUser(String uid, TextEditingController name,
       .catchError((error) => print("Failed to update user: $error"));
   return name.text.toString();
 }
+
+// String imageUrl = "";
+// Future<String> printUrl(String uid) async {
+//   final storageRef =
+//       FirebaseStorage.instance.ref().child("UserProfilePhotos/$uid.jpg");
+
+//   String url = (await storageRef.getDownloadURL()).toString();
+//   // ignore: avoid_print
+//   print(url);
+
+//   imageUrl = url;
+//   return url;
+// }

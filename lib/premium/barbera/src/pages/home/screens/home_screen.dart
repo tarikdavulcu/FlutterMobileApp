@@ -1,20 +1,26 @@
 part of '../home_page.dart';
 
 class BarneraHomeScreen extends StatelessWidget {
-  const BarneraHomeScreen({Key? key}) : super(key: key);
+  const BarneraHomeScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
-    User? user = FirebaseAuth.instance.currentUser;
+    UserCredential user = Get.arguments[0];
 
     // ignore: avoid_print
-    showToast(msg: "Hi: ${user!.email}");
-    List<String>? result = user.email?.split('@');
+    print(Get.arguments);
+
+    // print(user?.user?.email.toString());
+    // ignore: avoid_print
+    // showToast(msg: "Hi: ${user.email}");
+    var result = user.user!.email!.split('@');
+
     return Scaffold(
       body: ListView(
         children: [
           _BuildHeader(
-            UserName: result!.first.toString(),
-            uid: user.uid.toString(),
+            UserName: result.first.toString(),
+            uid: user.user!.uid.toString(),
           ),
           const _BuildScrollableCategory(),
           const SizedBox(height: Const.space25),

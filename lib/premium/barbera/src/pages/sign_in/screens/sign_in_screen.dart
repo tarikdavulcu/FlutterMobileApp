@@ -60,7 +60,7 @@ class _BarberaSignInScreenState extends State<BarberaSignInScreen> {
                     Future.delayed(const Duration(seconds: 2), () {
                       setState(() => _isLoading = false);
                       Get.offAllNamed<dynamic>(BarberaRoutes.home,
-                          arguments: [user.user!.uid.toString()]);
+                          arguments: [user]);
                     });
                   } on FirebaseAuthException catch (e) {
                     if (e.code == 'user-not-found') {

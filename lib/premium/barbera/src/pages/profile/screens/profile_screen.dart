@@ -6,6 +6,8 @@ class BarneraProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final themeMode = Provider.of<ThemeProvider>(context);
+    // UserCredential user = Get.arguments[0];
+
     return Scaffold(
       appBar: CustomAppBar(
         context,

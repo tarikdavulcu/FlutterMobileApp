@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 import 'package:ultimate_bundle/premium/barbera/src/pages/appointment/appointment_page.dart';
 import 'package:ultimate_bundle/premium/barbera/src/pages/home/home_page.dart';
 import 'package:ultimate_bundle/premium/barbera/src/pages/inbox/inbox_page.dart';
@@ -34,7 +35,6 @@ class BarberaCustomBottomNavigationBarState
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-
     return Scaffold(
       body: PageView(
         controller: _controller,
