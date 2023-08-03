@@ -5,7 +5,7 @@ class BarneraHomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    UserCredential user = Get.arguments[0];
+    // UserCredential user = Get.arguments[0];
 
     // ignore: avoid_print
     print(Get.arguments);
@@ -13,15 +13,15 @@ class BarneraHomeScreen extends StatelessWidget {
     // print(user?.user?.email.toString());
     // ignore: avoid_print
     // showToast(msg: "Hi: ${user.email}");
-    var result = user.user!.email!.split('@');
+    // var result = user.user!.email!.split('@');
 
     return Scaffold(
       body: ListView(
         children: [
-          _BuildHeader(
-            UserName: result.first.toString(),
-            uid: user.user!.uid.toString(),
-          ),
+          const _BuildHeader(
+              // UserName: user.user!.displayName.toString(),
+              // uid: user.user!.uid.toString(),
+              ),
           const _BuildScrollableCategory(),
           const SizedBox(height: Const.space25),
           _BuildScrollableBarbershop(

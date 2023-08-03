@@ -113,6 +113,8 @@ class _BarberaSignUpScreenState extends State<BarberaSignUpScreen> {
                     .createUserWithEmailAndPassword(
                         email: _emailController.text,
                         password: _passwordController.text);
+                await token.user?.updateDisplayName(_fullNameController.text);
+                await token.user?.reload();
                 this.token = token.user!.uid.toString();
                 addUser();
                 // var acs = ActionCodeSettings(
@@ -138,7 +140,7 @@ class _BarberaSignUpScreenState extends State<BarberaSignUpScreen> {
 
                 Future.delayed(const Duration(seconds: 2), () {
                   setState(() => _isLoading = false);
-                  Get.toNamed<dynamic>(BarberaRoutes.home);
+                  Get.toNamed<dynamic>(BarberaRoutes.home, arguments: [token]);
                 });
               } on FirebaseAuthException catch (e) {
                 if (e.code == 'weak-password') {

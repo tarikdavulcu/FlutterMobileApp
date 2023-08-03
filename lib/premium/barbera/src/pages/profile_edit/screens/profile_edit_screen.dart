@@ -125,8 +125,8 @@ fetchDoc(String uid) async {
   }
 }
 
-String updateUser(UserCredential user, TextEditingController name,
-    TextEditingController email, String birthday) {
+Future<String> updateUser(UserCredential user, TextEditingController name,
+    TextEditingController email, String birthday) async {
   CollectionReference users = FirebaseFirestore.instance.collection('users');
 
   user.user
@@ -137,6 +137,8 @@ String updateUser(UserCredential user, TextEditingController name,
       ?.updatePhotoURL(imageUrl.toString())
       // ignore: avoid_print
       .then((value) => print("profil image Updated"));
+  user.user!.reauthenticateWithCredential(user.credential!);
+
   // ignore: avoid_print
   print(user);
   users

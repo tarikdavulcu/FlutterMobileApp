@@ -9,8 +9,13 @@ class _BuildHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     UserCredential user = Get.arguments[0];
     fetchDoc(user.user!.uid.toString());
-    imageUrl = user.user!.photoURL!;
-    namee = user.user!.displayName!;
+    try {
+      namee = user.user!.displayName!;
+      imageUrl = user.user!.photoURL!;
+    } catch (e) {
+      imageUrl = "";
+    }
+
     //printUrl(user.user!.uid);
     final docRef =
         FirebaseFirestore.instance.collection("users").doc(user.user!.uid);
@@ -46,7 +51,7 @@ class _BuildHeader extends StatelessWidget {
                 radius: 35,
                 backgroundColor: theme.unselectedWidgetColor,
                 // ignore: unnecessary_null_comparison
-                backgroundImage: imageUrl != null
+                backgroundImage: imageUrl != ""
                     ? CachedNetworkImageProvider(imageUrl)
                     : const CachedNetworkImageProvider(Assets.profilePhoto),
               ),

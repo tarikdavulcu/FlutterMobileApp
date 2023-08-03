@@ -9,7 +9,11 @@ class _BuildCircleAvatar extends StatelessWidget {
   Widget build(BuildContext context) {
     // User? user = FirebaseAuth.instance.currentUser;
     UserCredential usr = Get.arguments[0];
-    imageUrl = usr.user!.photoURL!;
+    try {
+      imageUrl = usr.user!.photoURL!;
+    } catch (e) {
+      imageUrl = "";
+    }
     // fetchDoc(user!.uid.toString());
     //printUrl(user!.uid);
     final theme = Theme.of(context);
@@ -21,7 +25,7 @@ class _BuildCircleAvatar extends StatelessWidget {
           radius: 60,
           backgroundColor: theme.disabledColor,
           // ignore: unnecessary_null_comparison
-          backgroundImage: imageUrl != null
+          backgroundImage: imageUrl != ""
               ? CachedNetworkImageProvider(imageUrl)
               : const CachedNetworkImageProvider(Assets.profilePhoto),
           child: Container(

@@ -2,11 +2,8 @@ part of '../home_page.dart';
 
 class _BuildHeader extends StatelessWidget {
   // ignore: non_constant_identifier_names
-  const _BuildHeader({Key? key, required this.UserName, required this.uid})
-      : super(key: key);
+  const _BuildHeader({Key? key}) : super(key: key);
   // ignore: non_constant_identifier_names
-  final String UserName;
-  final String uid;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +14,15 @@ class _BuildHeader extends StatelessWidget {
     //     ?.updatePhotoURL(imageUrl.toString())
     //     // ignore: avoid_print
     //     .then((value) => print("profil image Updated"));
-    imageUrl = usr.user!.photoURL!;
+    String userName = "";
+    try {
+      userName = usr.user!.displayName!;
+      imageUrl = usr.user!.photoURL!;
+    } catch (e) {
+      imageUrl = "";
+      // UserName = "";
+    }
+
     final theme = Theme.of(context);
 
     return Container(
@@ -69,7 +74,7 @@ class _BuildHeader extends StatelessWidget {
                           image: DecorationImage(
                             fit: BoxFit.cover,
                             // ignore: unnecessary_null_comparison
-                            image: imageUrl != null
+                            image: imageUrl != ""
                                 ? CachedNetworkImageProvider(imageUrl)
                                 : const CachedNetworkImageProvider(
                                     Assets.profilePhoto),
@@ -82,7 +87,7 @@ class _BuildHeader extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'Hi, $UserName',
+                              'Hi, $userName',
                               style: theme.textTheme.headlineSmall?.copyWith(
                                 color: Colors.white,
                               ),
