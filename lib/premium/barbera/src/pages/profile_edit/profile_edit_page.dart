@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 
 import 'package:intl/intl.dart';
 import 'package:ultimate_bundle/premium/barbera/src/helpers/constans.dart';

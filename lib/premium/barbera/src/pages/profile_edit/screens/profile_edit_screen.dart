@@ -11,6 +11,7 @@ class BarberaProfileEditScreen extends StatefulWidget {
 class _BarberaProfileEditScreenState extends State<BarberaProfileEditScreen> {
   late TextEditingController _emailController;
   late TextEditingController _fullNameController;
+
   String _selectedDate = '';
   bool _isLoading = false;
 
@@ -19,6 +20,7 @@ class _BarberaProfileEditScreenState extends State<BarberaProfileEditScreen> {
     super.initState();
     _emailController = TextEditingController(text: email);
     _fullNameController = TextEditingController(text: name);
+
     name = _fullNameController.text;
     _selectedDate = birthday;
   }
@@ -137,7 +139,7 @@ Future<String> updateUser(UserCredential user, TextEditingController name,
       ?.updatePhotoURL(imageUrl.toString())
       // ignore: avoid_print
       .then((value) => print("profil image Updated"));
-  user.user!.reauthenticateWithCredential(user.credential!);
+  //user.user!.reauthenticateWithCredential(user.credential!);
 
   // ignore: avoid_print
   print(user);

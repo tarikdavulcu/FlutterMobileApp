@@ -1,6 +1,7 @@
 part of '../profile_edit_page.dart';
 
 Future<dynamic> _uploadBottomSheet(BuildContext context) {
+  final ImagePicker picker = ImagePicker();
   final theme = Theme.of(context);
   return showModalBottomSheet<dynamic>(
       context: context,
@@ -47,9 +48,15 @@ Future<dynamic> _uploadBottomSheet(BuildContext context) {
                   _BuildButtonIcon(
                     icon: Icons.photo,
                     label: AppLocalizations.of(context)!.gallery,
-                    onTap: () {
+                    onTap: () async {
                       Get.back<dynamic>();
+                      final XFile? photo =
+                          await picker.pickImage(source: ImageSource.gallery);
+                      var file = photo?.readAsBytes();
+                      // ignore: avoid_print
+                      print("gallery file : $file.toString()");
                       showToast(
+                          // ignore: use_build_context_synchronously
                           msg: AppLocalizations.of(context)!
                               .open_gallery_tapped);
                     },
@@ -58,9 +65,15 @@ Future<dynamic> _uploadBottomSheet(BuildContext context) {
                   _BuildButtonIcon(
                     icon: Icons.camera_alt,
                     label: AppLocalizations.of(context)!.camera,
-                    onTap: () {
+                    onTap: () async {
                       Get.back<dynamic>();
+                      final XFile? photo =
+                          await picker.pickImage(source: ImageSource.camera);
+                      var file = photo?.readAsBytes();
+                      // ignore: avoid_print
+                      print("cameraaa file :$file");
                       showToast(
+                          // ignore: use_build_context_synchronously
                           msg: AppLocalizations.of(context)!.camera_on_click);
                     },
                   ),

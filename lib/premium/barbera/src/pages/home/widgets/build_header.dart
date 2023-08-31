@@ -9,9 +9,12 @@ class _BuildHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     //final pathReference = storageRef.child("UserProfilePhotos/$uid.jpg");
     UserCredential usr = Get.arguments[0];
-    //printUrl(usr.user!.uid);
+    // printUrl(usr.user!.uid);
+
+    //user image model update icin kodun bir kez calısması gerekmektedir.
     // usr.user
-    //     ?.updatePhotoURL(imageUrl.toString())
+    //     ?.updatePhotoURL(
+    //         "https://firebasestorage.googleapis.com/v0/b/blooddonor-0935.appspot.com/o/UserProfilePhotos%2F9eZ25psI0YZtbTJinjf1RUoXLIK2.jpg?alt=media&token")
     //     // ignore: avoid_print
     //     .then((value) => print("profil image Updated"));
     String userName = "";
